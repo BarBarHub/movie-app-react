@@ -1,0 +1,12 @@
+.add-film{
+    height: 244px;
+    width: 280px;
+    color:white;
+    border: solid white;
+    text-align:center;
+    font-size: 150px;
+}
+.add-film-button{
+    text-decoration: none;
+    color:white;
+}
