@@ -1,14 +1,17 @@
-import React, { Component } from 'react'
-import Search from '../search/search'
-import Rate from '../rate/rate'
-import Films from '../films/filmsdata'
-import './container.css'
+import React, { Component } from 'react';
+import Search from '../search/search';
+import Rate from '../rate/rate';
+import Films from '../films/filmsdata';
+import WithLoading from '../spinner/spinner';
+import './container.css';
 
+const Content = WithLoading(Films);
 
  class Container extends Component {
     state ={
         s:"",
         results: [],
+        loading: true
        }
        handlchange = newStar => this.setState({ star: newStar });
           handleInput=(e)=> {
@@ -17,6 +20,8 @@ import './container.css'
                     s:e.target.value,
                 })        
              };
+             componentDidMount() {
+                setTimeout(() => this.setState({ loading: false }), 2000);}
 
              
     render() {
@@ -28,6 +33,7 @@ import './container.css'
               <h1> Movie Search  !</h1>
           </header>
           <main>
+             
               <div className="flex">
           <Search handleInput={this.handleInput}/>
            <div className="stars">
@@ -35,7 +41,10 @@ import './container.css'
           </div>
           </div>
           <section className="bloc">
-            <Films rate={this.state.star} search={this.state.s} />
+            
+            <Content  isLoading={this.state.loading} 
+            rate={this.state.star}
+             search={this.state.s}/>
            
         </section>
           
